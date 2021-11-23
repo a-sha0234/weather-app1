@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather app</title>
+    <link rel="stylesheet" href="/scss/style.css" />
+  </head>
+  <body>
+    <header>
+      <form>
+        <label for="cityname">Enter the name of you city</label>
+        <input type="text" id="cityname" />
+        <button type="button" class="submit">Submit</button>
+      </form>
+    </header>
+    <main id="weather-card">
+      <h1 id="city"></h1>
+      <ul id="left-side">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <ul id="right-side">
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </main>
+    <script type="module" src="/app/main.js"></script>
+
+    <!-- for webpack dont need the type module in script tag as it bundles it into one file  -->
+  </body>
+</html>
