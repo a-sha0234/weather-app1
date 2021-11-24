@@ -1,0 +1,52 @@
+* {
+  //css reset
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+  li {
+    list-style: none;
+  }
+}
+
+body {
+  background-color: #133863;
+}
+
+header {
+  //header and elements inside
+  width: 100%;
+  text-align: center;
+  position: relative;
+  top: 5vh;
+
+  label {
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  button {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  input {
+    font-size: 1.5rem;
+  }
+}
+
+main {
+  position: relative;
+  text-align: center;
+  top: 20vh;
+  background-color: #e1ecf9;
+  margin-right: 25%;
+  margin-left: 25%;
+  border-radius: 7px;
+
+  h1 {
+    font-size: 4.5rem;
+  }
+  h2 {
+    font-size: 2.5rem;
+  }
+}
