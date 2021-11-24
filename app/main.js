@@ -1,6 +1,15 @@
 "use strict";
 
+import { createListElement, removeHtml } from "./createLists.js";
+import { kelvinToCelsius } from "./unitConversions.js";
+
+const card = document.querySelector("#weather-card");
 const submitButton = document.querySelector(".submit");
+const leftSelector = document.querySelector("#left-side");
+const rightSelector = document.querySelector("#right-side");
+const city = document.querySelector("#city");
+const sky = document.querySelector("#sky-description");
+
 let nameOfCity = "";
 
 async function getApi(cityname) {
@@ -11,47 +20,43 @@ async function getApi(cityname) {
       `https://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=708dbd9b677bb41f1461a55259144588`
     );
     const response = await data.json();
-
     console.log(response);
-    return [response.name, response.main.temp_max];
+    return [
+      response.name,
+      response.main.temp,
+      response.main.feels_like,
+      response.main.temp_max,
+      response.main.temp_min,
+      response.wind.speed,
+      response.weather[0].description,
+    ];
   } catch (err) {
     console.log("There was an error fetching the data: " + err);
   }
 }
 
-function extractData() {
-  //function to extract data and put into an array
-  let arrApiData = [];
+function displayData() {
+  //gets city name and displayes it on page
   getApi(nameOfCity).then((x) => {
-    arrApiData.push(x);
+    city.textContent = x[0];
+    sky.textContent = x[6];
+    createListElement(kelvinToCelsius(x[1]), leftSelector);
+    createListElement(kelvinToCelsius(x[2]), leftSelector);
+    createListElement(kelvinToCelsius(x[3]), rightSelector);
+    createListElement(kelvinToCelsius(x[4]), rightSelector);
+    createListElement(x[5], rightSelector);
+    console.log(x);
   });
-  return arrApiData;
-}
-
-async function getCityName() {
-  //function that gets city name
-  const city = arrdata.name;
-  console.log(city);
-  return city;
-}
-
-function maxTemp() {
-  //   let h = getApi(nameOfCity).then((x) => {
-  //     console.log(x[1]);
-  //   });
-  //   return h;
 }
 
 function main() {
   submitButton.addEventListener("click", function () {
     let cityName = document.querySelector("#cityname").value;
     nameOfCity += cityName;
-    // console.log(
-    //   getApi(nameOfCity).then((x) => {
-    //     console.log(x[1]);
-    //   })
-    // );
-    console.log(extractData());
+    removeHtml(leftSelector);
+    removeHtml(rightSelector);
+    displayData();
+
     nameOfCity = "";
   });
 }
