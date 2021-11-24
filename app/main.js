@@ -1,8 +1,10 @@
 "use strict";
 
+//imports
 import { createListElement, removeHtml } from "./createLists.js";
 import { kelvinToCelsius } from "./unitConversions.js";
 
+//selectors
 const card = document.querySelector("#weather-card");
 const submitButton = document.querySelector(".submit");
 const leftSelector = document.querySelector("#left-side");
@@ -36,7 +38,7 @@ async function getApi(cityname) {
 }
 
 function displayData() {
-  //gets city name and displayes it on page
+  //gets city name and displays it on page
   getApi(nameOfCity).then((x) => {
     city.textContent = x[0];
     sky.textContent = x[6];
@@ -61,6 +63,7 @@ function displayData() {
 }
 
 function main() {
+  //calls other functions
   submitButton.addEventListener("click", function () {
     let cityName = document.querySelector("#cityname").value;
     nameOfCity += cityName;
