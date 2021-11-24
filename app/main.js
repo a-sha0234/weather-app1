@@ -40,12 +40,23 @@ function displayData() {
   getApi(nameOfCity).then((x) => {
     city.textContent = x[0];
     sky.textContent = x[6];
-    createListElement(kelvinToCelsius(x[1]), leftSelector);
-    createListElement(kelvinToCelsius(x[2]), leftSelector);
-    createListElement(kelvinToCelsius(x[3]), rightSelector);
-    createListElement(kelvinToCelsius(x[4]), rightSelector);
-    createListElement(x[5], rightSelector);
-    console.log(x);
+    createListElement(
+      "Temperature: " + kelvinToCelsius(x[1]) + "°C",
+      leftSelector
+    );
+    createListElement(
+      "Feels Like: " + kelvinToCelsius(x[2]) + "°C",
+      leftSelector
+    );
+    createListElement(
+      "Max Temp: " + kelvinToCelsius(x[3]) + "°C",
+      rightSelector
+    );
+    createListElement(
+      "Min Temp: " + kelvinToCelsius(x[4]) + "°C",
+      rightSelector
+    );
+    createListElement("Wind speed: " + x[5] + "m/s", rightSelector);
   });
 }
 
